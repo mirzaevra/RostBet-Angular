@@ -1,22 +1,30 @@
 <section class="games">
-  <span
-     (click)="defaultSort()"
-   >
-    Default sort
-  </span>
-   <span
-     (click)="sortByName()"
-   >
-    Sort by name
-  </span>
-  <span
-     (click)="sortByNameReverse()"
-   >
-    Sort by name reverse
-  </span>
-  <app-controls-bar
-    (quntityOnPage)="setQuntityOnPage($event)"
-  ></app-controls-bar>
+  <div class="games-inner">
+    <div class="games-inner__row">
+      <div class="games-inner__col">
+        <h2 class="games__title">Select the number of games displayed on the screen</h2>
+        <ul class="sort-list">
+          <li class="sort-list__item"
+              (click)="defaultSort()"
+          >Default
+          </li>
+          <li class="sort-list__item"
+              (click)="sortByName()">By name
+          </li>
+          <li class="sort-list__item"
+              (click)="sortByNameReverse()"
+          >By name reverce
+          </li>
+        </ul>
+      </div>
+      <div class="games-inner__col">
+        <h2 class="games__title">Select the number of games displayed on the screen</h2>
+        <app-controls-bar
+          (quntityOnPage)="setQuntityOnPage($event)"
+        ></app-controls-bar>
+      </div>
+    </div>
+  </div>
   <div
     *ngIf="favouritesGames.length;"
     class="games-container">

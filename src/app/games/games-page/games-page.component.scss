@@ -9,6 +9,23 @@
     }
   }
 
+  &-inner {
+
+    &__row {
+      display: flex;
+
+    }
+
+    &__col {
+      flex: 1 1 100%;
+    }
+  }
+
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
   &__row {
     display: flex;
     justify-content: flex-start;
@@ -40,6 +57,33 @@
     &:hover {
       border-color: #5daf36;
       background: #5daf36;
+    }
+  }
+
+  .sort-list {
+    display: flex;
+
+    &__item {
+      margin-right: 25px;
+      padding: 7px 15px;
+      font-size: 14px;
+      line-height: .7;
+      border-radius: 50px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      transition: border-color .2s linear, background .2s linear;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.active,
+      &:hover {
+        border-color: #196deb;
+        background: #196deb;
+      }
+
+
     }
   }
 }
