@@ -14,9 +14,9 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   private allGames: Games[] = [];
   private allCategories = [];
   private allMerchants = {};
-  public favouritesGames = [];
   private perPage = 12;
   private page = 1;
+  public favouritesGames = [];
   private savedGamesList: Games[] = [];
 
 
@@ -37,6 +37,12 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       this.dataMerge();
       this.savedGamesList = [...this.allGames];
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.gamesSubscription) {
+      this.gamesSubscription.unsubscribe();
+    }
   }
 
   selectSorted(type): void {
@@ -80,12 +86,6 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   sortByDefault(): any {
     this.allGames = this.savedGamesList;
     this.savedGamesList = [...this.allGames];
-  }
-
-  ngOnDestroy(): void {
-    if (this.gamesSubscription) {
-      this.gamesSubscription.unsubscribe();
-    }
   }
 
   dataMerge(): void {
