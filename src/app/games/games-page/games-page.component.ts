@@ -15,7 +15,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   private allCategories = [];
   private allMerchants = {};
   public favouritesGames = [];
-  private perPage = 4;
+  private perPage = 12;
   private page = 1;
 
 

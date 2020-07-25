@@ -1,0 +1,32 @@
+.controls-bar {
+  padding-bottom: 30px;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    display: flex;
+
+    &-item {
+      margin-right: 25px;
+      padding: 7px 15px;
+      font-size: 14px;
+      line-height: .7;
+      border-radius: 50px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      transition: border-color .2s linear, background .2s linear;
+
+      &.active,
+      &:hover {
+        border-color: #196deb;
+        background: #196deb;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
