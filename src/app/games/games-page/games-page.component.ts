@@ -17,7 +17,6 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   public favouritesGames = [];
   private perPage = 4;
   private page = 1;
-  private favouritesList: Games[] = [];
 
 
   constructor(
@@ -26,13 +25,15 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.restoreFavourites();
     this.gamesSubscription = this.gamesService.getAll().subscribe(response => {
       this.allGames = response.games.map(game => {
-        game.chosen = false;
+        game.favourites = false;
         return game;
       });
       this.allCategories = response.categories;
       this.allMerchants = response.merchants;
+      this.dataMerge();
     });
   }
 
@@ -40,6 +41,16 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     if (this.gamesSubscription) {
       this.gamesSubscription.unsubscribe();
     }
+  }
+
+  dataMerge(): void {
+    this.favouritesGames.forEach(fav => {
+      this.allGames.forEach(game => {
+        if (fav.ID === game.ID) {
+          game.favourites = fav.favourites;
+        }
+      });
+    });
   }
 
   get games(): Games[] {
@@ -58,9 +69,16 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     this.perPage = perPage;
   }
 
+  restoreFavourites(): void {
+    this.favouritesGames = this.getFavouritesFromStorage();
+  }
+
+  getFavouritesFromStorage(): Games[] {
+    return localStorage.getItem('favourites') ? JSON.parse(localStorage.getItem('favourites')) : [];
+  }
+
   toggleFavourites(game): void {
-    this.favouritesList.push(game);
-    console.log(this.favouritesList);
-    console.log(123123);
+    this.favouritesGames = this.allGames.filter(item => item.favourites);
+    localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
   }
 }

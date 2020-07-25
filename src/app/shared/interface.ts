@@ -1,8 +1,9 @@
 export interface Games {
-  id?: number | string;
+  ID?: number | string;
   ImageFullPath: string;
   Name: object;
   some: object;
+  favourites?: boolean;
 }
 
 export interface Categories {

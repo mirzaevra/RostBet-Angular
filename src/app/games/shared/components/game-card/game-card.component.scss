@@ -49,15 +49,16 @@
     transform: translateY(-50%);
     right: 5px;
     font-size: 30px;
+    font-weight: 700;
     line-height: 30px;
     text-align: center;
     color: white;
     cursor: pointer;
     transition: color .2s linear;
     text-decoration: none;
-    &.chosen,
+    &.favourites,
     &:hover {
-      color: #196deb;
+      color: indianred;
     }
   }
 }

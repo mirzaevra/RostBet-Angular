@@ -8,8 +8,11 @@
   <div class="game-card__info">
     <p class="game-card__title">{{game.Name.en}}</p>
     <a href="" class="game-card__btn">Play</a>
-    <p>{{game.chosen}}</p>
+    <p>{{game.favourites}}</p>
     <span
+      [ngClass]="{
+      'favourites': game.favourites
+      }"
       class="game-card__favourites"
       (click)="toggleFavourites(game)"
     >+</span>
