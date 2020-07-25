@@ -1,12 +1,12 @@
 <section class="controls-bar">
   <ul class="controls-bar__list">
     <li
-      *ngFor="let list of gemseOnPage"
+      *ngFor="let control of controls"
       class="controls-bar__list-item"
       [ngClass]="{
-      'active': list.active
+      'active': control.active
       }"
-      (click)="chooseQuantity(list)"
-    >{{list.text}} {{list.perPage}}</li>
+      (click)="chooseQuantity(control)"
+    >{{control.text}} {{control.perPage}}</li>
   </ul>
 </section>

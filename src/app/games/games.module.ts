@@ -6,7 +6,8 @@ import {GamesService} from './services/games.service';
 import {GamesPageComponent} from './games-page/games-page.component';
 import {ViewPageComponent} from './view-page/view-page.component';
 import {GameCardComponent} from './shared/components/game-card/game-card.component';
-import { ControlsBarComponent } from './shared/components/controls-bar/controls-bar.component';
+import {ControlsBarComponent} from './shared/components/controls-bar/controls-bar.component';
+import {SortListComponent} from './shared/components/sort-list/sort-list.component';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { ControlsBarComponent } from './shared/components/controls-bar/controls-
       ViewPageComponent,
       GameCardComponent,
       ControlsBarComponent,
+      SortListComponent,
     ],
     imports: [
       CommonModule,

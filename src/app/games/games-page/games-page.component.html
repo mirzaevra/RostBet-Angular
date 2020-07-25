@@ -2,20 +2,10 @@
   <div class="games-inner">
     <div class="games-inner__row">
       <div class="games-inner__col">
-        <h2 class="games__title">Select the number of games displayed on the screen</h2>
-        <ul class="sort-list">
-          <li class="sort-list__item"
-              (click)="defaultSort()"
-          >Default
-          </li>
-          <li class="sort-list__item"
-              (click)="sortByName()">By name
-          </li>
-          <li class="sort-list__item"
-              (click)="sortByNameReverse()"
-          >By name reverce
-          </li>
-        </ul>
+        <h2 class="games__title">Sort by:</h2>
+        <app-sort-list
+          (sortBy)="selectSorted($event)"
+        ></app-sort-list>
       </div>
       <div class="games-inner__col">
         <h2 class="games__title">Select the number of games displayed on the screen</h2>

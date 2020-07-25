@@ -1,0 +1,10 @@
+<ul class="sort-list">
+  <li
+    *ngFor="let item of sortList"
+    class="sort-list__item"
+    [ngClass]="{
+      'active': item.active
+      }"
+    (click)="sortHandler(item)"
+  >{{item.text}}
+</ul>

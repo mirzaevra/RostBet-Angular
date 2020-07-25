@@ -39,6 +39,20 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  selectSorted(type): void {
+    switch (type) {
+      case 'default':
+        this.sortByDefault();
+        break;
+      case 'name':
+        this.sortByName();
+        break;
+      case 'reverse':
+        this.sortByNameReverse();
+        break;
+    }
+  }
+
   sortByName(): any {
     this.allGames.sort((a: Games, b: Games) => {
       if (a.Name.en > b.Name.en) {
@@ -63,7 +77,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  defaultSort(): any {
+  sortByDefault(): any {
     this.allGames = this.savedGamesList;
     this.savedGamesList = [...this.allGames];
   }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {GamesOnPage} from '../../interface';
+import {ControlList} from '../../interface';
 
 @Component({
   selector: 'app-controls-bar',
@@ -9,7 +9,7 @@ import {GamesOnPage} from '../../interface';
 export class ControlsBarComponent implements OnInit {
   @Output() quntityOnPage: EventEmitter<any> = new EventEmitter<any>();
 
-  private controlList: GamesOnPage[] = [
+  private controlList: ControlList[] = [
     {
       text: 'Set:',
       perPage: 12,
@@ -48,11 +48,11 @@ export class ControlsBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get gemseOnPage(): GamesOnPage[] {
+  get controls(): ControlList[] {
     return this.controlList;
   }
 
-  setActiveClass(item: GamesOnPage): void {
+  setActiveClass(item: ControlList): void {
     this.controlList.map(list => {
       if (item.perPage === list.perPage) {
         list.active = true;
