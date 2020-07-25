@@ -14,6 +14,9 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   allGames: Games[] = [];
   allCategories = [];
   allMerchants = [];
+  private perPage = 12;
+  private page = 1;
+  private someTest = 0;
 
   constructor(
     private gamesService: GamesService,
@@ -35,15 +38,10 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   get games(): Games[] {
-    return this.loadMoreGames();
+    return this.allGames.slice(0, this.perPage * this.page);
   }
 
-  gamesOnPage(page: number = 1, perPage: number = 9): Games[] {
-    const increase: number = page * perPage;
-    return this.allGames.slice(0, increase);
-  }
-
-  loadMoreGames(): Games[] {
-    return this.gamesOnPage(1, 9);
+  loadMoreGames(): void {
+    this.page++;
   }
 }
