@@ -17,6 +17,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   public favouritesGames = [];
   private perPage = 12;
   private page = 1;
+  private savedGamesList: Games[] = [];
 
 
   constructor(
@@ -34,7 +35,37 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       this.allCategories = response.categories;
       this.allMerchants = response.merchants;
       this.dataMerge();
+      this.savedGamesList = [...this.allGames];
     });
+  }
+
+  sortByName(): any {
+    this.allGames.sort((a: Games, b: Games) => {
+      if (a.Name.en > b.Name.en) {
+        return 1;
+      }
+      if (a.Name.en < b.Name.en) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  sortByNameReverse(): any {
+    this.allGames.sort((a: Games, b: Games) => {
+      if (a.Name.en > b.Name.en) {
+        return -1;
+      }
+      if (a.Name.en < b.Name.en) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  defaultSort(): any {
+    this.allGames = this.savedGamesList;
+    this.savedGamesList = [...this.allGames];
   }
 
   ngOnDestroy(): void {

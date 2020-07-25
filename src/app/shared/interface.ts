@@ -1,9 +1,13 @@
 export interface Games {
   ID?: number | string;
   ImageFullPath: string;
-  Name: object;
+  Name: {
+    ru?: string;
+    en?: string;
+  };
   some: object;
   favourites?: boolean;
+  Sort?: number;
 }
 
 export interface Categories {

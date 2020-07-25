@@ -1,4 +1,19 @@
 <section class="games">
+  <span
+     (click)="defaultSort()"
+   >
+    Default sort
+  </span>
+   <span
+     (click)="sortByName()"
+   >
+    Sort by name
+  </span>
+  <span
+     (click)="sortByNameReverse()"
+   >
+    Sort by name reverse
+  </span>
   <app-controls-bar
     (quntityOnPage)="setQuntityOnPage($event)"
   ></app-controls-bar>
