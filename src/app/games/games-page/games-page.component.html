@@ -18,6 +18,7 @@
         class="games__col">
         <app-game-card
           [game]="game"
+          (onToggleFavourites)="toggleFavourites($event)"
         ></app-game-card>
       </div>
     </div>

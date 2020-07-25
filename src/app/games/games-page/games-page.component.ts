@@ -10,13 +10,15 @@ import {Games} from '../../shared/interface';
 })
 export class GamesPageComponent implements OnInit, OnDestroy {
 
-  gamesSubscription: Subscription;
-  allGames: Games[] = [];
-  allCategories = [];
-  allMerchants = [];
-  favouritesGames = [];
+  private gamesSubscription: Subscription;
+  private allGames: Games[] = [];
+  private allCategories = [];
+  private allMerchants = [];
+  public favouritesGames = [];
   private perPage = 4;
   private page = 1;
+  private favouritesList: Games[] = [];
+
 
   constructor(
     private gamesService: GamesService,
@@ -25,7 +27,10 @@ export class GamesPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.gamesSubscription = this.gamesService.getAll().subscribe(response => {
-      this.allGames = response.games;
+      this.allGames = response.games.map(game => {
+        game.chosen = false;
+        return game;
+      });
       this.allCategories = response.categories;
       this.allMerchants = response.merchants;
     });
@@ -51,5 +56,11 @@ export class GamesPageComponent implements OnInit, OnDestroy {
 
   setQuntityOnPage(perPage): void {
     this.perPage = perPage;
+  }
+
+  toggleFavourites(game): void {
+    this.favouritesList.push(game);
+    console.log(this.favouritesList);
+    console.log(123123);
   }
 }

@@ -1,8 +1,10 @@
 .game-card {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 1px solid yellow;
   height: 100%;
+  text-decoration: none;
 
   &-img__container {
     position: absolute;
@@ -17,5 +19,45 @@
     width: auto;
     height: auto;
     object-fit: cover;
+  }
+
+  &__info {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    background: rgba(#000, 5);
+    padding: 5px 35px 5px 5px;
+  }
+
+  &__title {
+    font-size: 20px;
+    color: white;
+  }
+
+  &__btn {
+    display: inline-block;
+    font-size: 18px;
+    color: #196deb;
+    text-decoration: none;
+  }
+
+  &__favourites {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    right: 5px;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    transition: color .2s linear;
+    text-decoration: none;
+    &.chosen,
+    &:hover {
+      color: #196deb;
+    }
   }
 }
