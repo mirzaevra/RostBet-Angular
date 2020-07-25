@@ -1,8 +1,14 @@
 <section class="games">
-  <div class="games-container">
+  <app-controls-bar
+    (quntityOnPage)="setQuntityOnPage($event)"
+  ></app-controls-bar>
+  <div
+    *ngIf="favouritesGames.length;"
+    class="games-container">
     <h2>Favourites</h2>
   </div>
   <div
+    *ngIf="games.length;"
     class="games-container">
     <h2>All</h2>
     <div

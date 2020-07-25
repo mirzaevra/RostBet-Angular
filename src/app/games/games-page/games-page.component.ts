@@ -14,9 +14,9 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   allGames: Games[] = [];
   allCategories = [];
   allMerchants = [];
-  private perPage = 12;
+  favouritesGames = [];
+  private perPage = 4;
   private page = 1;
-  private someTest = 0;
 
   constructor(
     private gamesService: GamesService,
@@ -43,5 +43,13 @@ export class GamesPageComponent implements OnInit, OnDestroy {
 
   loadMoreGames(): void {
     this.page++;
+  }
+
+  public changeShowingQuantity(quantity = 100): void {
+    this.perPage = quantity;
+  }
+
+  setQuntityOnPage(perPage): void {
+    this.perPage = perPage;
   }
 }
