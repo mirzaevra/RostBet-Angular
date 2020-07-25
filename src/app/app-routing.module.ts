@@ -9,9 +9,9 @@ const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: '/games', pathMatch: 'full'},
+      {path: 'games', loadChildren: './games/games.module#GamesModule'},
     ]
   },
-  {path: 'games', loadChildren: './games/games.module#GamesModule'},
   {path: 'error', component: ErrorPageComponent},
   {path: '**', redirectTo: 'error'}
 ];

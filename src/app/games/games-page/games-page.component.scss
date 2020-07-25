@@ -1,0 +1,25 @@
+.games {
+  padding: 2rem 0;
+
+  &-container {
+    margin-bottom: 2rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+  }
+
+  &__col {
+    width: 25%;
+    min-height: 247px;
+    padding: 0 10px;
+    margin: 10px 0;
+  }
+}

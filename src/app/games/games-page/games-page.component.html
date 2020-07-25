@@ -1,1 +1,20 @@
-<p>123123123123</p>
+<section class="games">
+  <div class="games-container">
+    <h2>Favourites</h2>
+  </div>
+  <div
+    class="games-container">
+    <h2>All</h2>
+    <div
+      class="games__row">
+      <div
+        *ngFor="let game of games;"
+        class="games__col">
+        <app-game-card
+          [game]="game"
+        ></app-game-card>
+      </div>
+
+    </div>
+  </div>
+</section>
