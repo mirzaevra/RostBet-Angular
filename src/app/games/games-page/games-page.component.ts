@@ -13,7 +13,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   private gamesSubscription: Subscription;
   private allGames: Games[] = [];
   private allCategories = [];
-  private allMerchants = [];
+  private allMerchants = {};
   public favouritesGames = [];
   private perPage = 4;
   private page = 1;
@@ -78,7 +78,14 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   toggleFavourites(game): void {
-    this.favouritesGames = this.allGames.filter(item => item.favourites);
+    this.favouritesGames = this.allGames
+      .map(favorFame => {
+        if (game.ID === favorFame.ID) {
+          favorFame.favourites = !favorFame.favourites;
+        }
+        return favorFame;
+      })
+      .filter(item => item.favourites);
     localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
   }
 }

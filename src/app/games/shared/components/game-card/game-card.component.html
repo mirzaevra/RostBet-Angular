@@ -7,7 +7,9 @@
   </div>
   <div class="game-card__info">
     <p class="game-card__title">{{game.Name.en}}</p>
-    <a href="" class="game-card__btn">Play</a>
+    <a
+      [routerLink]="['view', game.ID]"
+      class="game-card__btn">Play</a>
     <p>{{game.favourites}}</p>
     <span
       [ngClass]="{

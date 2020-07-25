@@ -13,3 +13,11 @@ export interface Categories {
 export interface Merchants {
   id: number;
 }
+
+export interface ResponseAPI {
+  categories: [];
+  games: Games[];
+  merchants: object;
+  countriesRestrictions: object;
+  merchantsCurrencies: [];
+}

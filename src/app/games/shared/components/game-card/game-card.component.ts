@@ -16,7 +16,6 @@ export class GameCardComponent implements OnInit {
   }
 
   toggleFavourites(game): void {
-    game.favourites = !game.favourites;
     this.onToggleFavourites.emit(game);
   }
 
