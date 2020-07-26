@@ -8,13 +8,19 @@
         ></app-sort-list>
       </div>
       <div class="games-inner__col">
-        <h2 class="games__title">Select the number of games displayed on the screen</h2>
+        <h2 class="games__title">Games on page:</h2>
         <app-controls-bar
           (quntityOnPage)="setQuntityOnPage($event)"
         ></app-controls-bar>
       </div>
     </div>
   </div>
+  <h2 class="games__title">Search:</h2>
+  <input
+    type="text"
+    placeholder="Search game"
+    [(ngModel)]="searchString"
+  >
   <div
     *ngIf="favouritesGames.length;"
     class="games-container">
@@ -38,7 +44,7 @@
     <div
       class="games__row">
       <div
-        *ngFor="let game of games;"
+        *ngFor="let game of games | searchGames: searchString;"
         class="games__col">
         <app-game-card
           [game]="game"

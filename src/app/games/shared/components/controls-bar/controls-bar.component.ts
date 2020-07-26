@@ -12,17 +12,17 @@ export class ControlsBarComponent implements OnInit {
   private controlList: ControlList[] = [
     {
       text: 'Set:',
+      perPage: 4,
+      active: false,
+    },
+    {
+      text: 'Set:',
       perPage: 12,
       active: true,
     },
     {
       text: 'Set:',
       perPage: 24,
-      active: false,
-    },
-    {
-      text: 'Set:',
-      perPage: 36,
       active: false,
     },
     {

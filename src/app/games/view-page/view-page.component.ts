@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GamesService} from '../services/games.service';
+import {GamesService} from '../shared/services/games.service';
 import {Observable, Subscription} from 'rxjs';
 import {Games} from '../../shared/interface';
 import {ActivatedRoute, Params} from '@angular/router';
@@ -12,7 +12,7 @@ import {switchMap} from 'rxjs/operators';
 })
 export class ViewPageComponent implements OnInit, OnDestroy {
   private gamesSubscription: Subscription;
-  private allGames: Games[] = [];
+  public allGames: Games[] = [];
   private viewGame: Games;
   private favouritesGames = [];
   private viewId: number;

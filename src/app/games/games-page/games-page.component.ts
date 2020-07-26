@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GamesService} from '../services/games.service';
+import {GamesService} from '../shared/services/games.service';
 import {Subscription} from 'rxjs';
 import {Games} from '../../shared/interface';
 
@@ -18,6 +18,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   private page = 1;
   public favouritesGames = [];
   private savedGamesList: Games[] = [];
+  public searchString = '';
 
 
   constructor(
