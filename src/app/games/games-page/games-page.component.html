@@ -15,12 +15,15 @@
       </div>
     </div>
   </div>
-  <h2 class="games__title">Search:</h2>
-  <input
-    type="text"
-    placeholder="Search game"
-    [(ngModel)]="searchString"
-  >
+  <div class="games-container">
+    <h2 class="games__title">Search:</h2>
+    <input
+      type="text"
+      class="games__search"
+      placeholder="Search game"
+      [(ngModel)]="searchString"
+    >
+  </div>
   <div
     *ngIf="favouritesGames.length;"
     class="games-container">
@@ -40,7 +43,9 @@
   <div
     *ngIf="games.length;"
     class="games-container">
-    <h2>All</h2>
+    <h2>All
+      <span *ngIf="!searchString.length">{{games.length}} of {{allGames.length}}</span>
+    </h2>
     <div
       class="games__row">
       <div
@@ -52,7 +57,9 @@
         ></app-game-card>
       </div>
     </div>
-    <div class="button-wrap">
+    <div
+      *ngIf="!searchString.trim().length;"
+      class="button-wrap">
     <span class="games__btn"
           (click)="loadMoreGames()">Show more</span>
     </div>

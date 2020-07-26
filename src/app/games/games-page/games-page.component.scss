@@ -59,4 +59,14 @@
       background: #5daf36;
     }
   }
+
+  &__search {
+    height: 40px;
+    width: 100%;
+    border-radius: 50px;
+    padding: 5px 15px;
+    &:focus {
+      box-shadow: 0 0 15px #196deb;
+    }
+  }
 }

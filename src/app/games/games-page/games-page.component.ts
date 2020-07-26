@@ -100,7 +100,11 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   get games(): Games[] {
-    return this.allGames.slice(0, this.perPage * this.page);
+    if (this.searchString.trim().length > 0) {
+      return this.allGames;
+    } else {
+      return this.allGames.slice(0, this.perPage * this.page);
+    }
   }
 
   loadMoreGames(): void {
