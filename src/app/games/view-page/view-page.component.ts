@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GamesService} from '../shared/services/games.service';
 import {Observable, Subscription, throwError} from 'rxjs';
 import {Games} from '../../shared/interface';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 
 @Component({
@@ -20,13 +20,13 @@ export class ViewPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private gamesService: GamesService,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private route: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      console.log(params);
+    this.activatedRoute.params.subscribe(params => {
       this.viewMId = +params.mid;
       this.viewLId = +params.lid;
     });
@@ -39,6 +39,9 @@ export class ViewPageComponent implements OnInit, OnDestroy {
       this.dataMerge();
       this.viewGame = this.allGames
         .find(game => +game.MerchantID === this.viewMId && +game.LaunchCode === this.viewLId);
+      if (!this.viewGame) {
+        this.route.navigate(['/error']);
+      }
     });
   }
 

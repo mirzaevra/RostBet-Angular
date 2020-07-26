@@ -1,6 +1,14 @@
 <section
   *ngIf="allGames.length"
   class="view">
-  <h1>{{view.Name.en}}</h1>
-  <img [src]="view.ImageFullPath" alt="">
+  <h1 class="view__title">{{view.Name.en}}</h1>
+  <div class="view__img-container">
+    <img [src]="view.ImageFullPath" alt="">
+  </div>
+  <div class="button-wrap">
+<span
+  routerLink="/"
+  class="button"
+>Go Home</span>
+  </div>
 </section>

@@ -45,21 +45,6 @@
     margin-top: 30px;
   }
 
-  &__btn {
-    display: inline-block;
-    max-width: 290px;
-    padding: 5px 20px;
-    border: 2px solid #ccc;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background .2s linear, border-color .2s linear;
-
-    &:hover {
-      border-color: #5daf36;
-      background: #5daf36;
-    }
-  }
-
   &__search {
     height: 40px;
     width: 100%;

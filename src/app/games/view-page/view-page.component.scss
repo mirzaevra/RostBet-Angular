@@ -1,3 +1,12 @@
 .view {
   padding: 30px 0;
+  text-align: center;
+
+  &__title {
+    margin-bottom: 30px;
+  }
+
+  &__img-container {
+    margin: 30px 0;
+  }
 }

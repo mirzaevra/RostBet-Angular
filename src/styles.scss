@@ -56,6 +56,21 @@ body {
   color: white;
 }
 
+.button {
+  display: inline-block;
+  max-width: 290px;
+  padding: 5px 20px;
+  border: 2px solid #ccc;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background .2s linear, border-color .2s linear;
+
+  &:hover {
+    border-color: #5daf36;
+    background: #5daf36;
+  }
+}
+
 @media screen and (max-width: 1199px) {
   .container {
     max-width: 1140px;
