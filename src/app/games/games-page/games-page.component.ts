@@ -27,7 +27,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.restoreFavouritesFromStorage();
+    this.restoreFavourites();
     this.gamesSubscription = this.gamesService.getAll().subscribe(response => {
       this.allGames = response.games.map(game => {
         game.favourites = false;
@@ -119,51 +119,23 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     this.perPage = perPage;
   }
 
-  restoreFavouritesFromStorage(): void {
+  restoreFavourites(): void {
     this.favouritesGames = this.getFavouritesFromStorage();
-  }
-
-  setFavouritesInStorage(): void {
-    localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
   }
 
   getFavouritesFromStorage(): Games[] {
     return localStorage.getItem('favourites') ? JSON.parse(localStorage.getItem('favourites')) : [];
   }
 
-  isFavourite(game: Games): number {
-    let findIndex = -1;
-    this.favouritesGames.forEach((favorGame, index) => {
-      if (favorGame.ID === game.ID) {
-        favorGame.favourites = true;
-        findIndex = index;
-        return false;
-      } else {
-        favorGame.favourites = false;
-      }
-    });
-    return findIndex;
-  }
-
-  toggleFavourites(game: Games): void {
-    this.restoreFavouritesFromStorage();
-    const isFavourite = this.isFavourite(game);
-
-    if (isFavourite < 0) {
-      this.favouritesGames.unshift(game);
-    } else {
-      this.favouritesGames.splice(isFavourite, 1);
-    }
-    this.favouritesGames = this.favouritesGames.slice(0, 5);
-    this.setFavouritesInStorage();
-
-    // this.favouritesGames = this.allGames
-    //   .map(favorFame => {
-    //     if (game.ID === favorFame.ID) {
-    //       favorFame.favourites = !favorFame.favourites;
-    //     }
-    //     return favorFame;
-    //   })
-    //   .filter(item => item.favourites);
+  toggleFavourites(game): void {
+    this.favouritesGames = this.allGames
+      .map(favorFame => {
+        if (game.ID === favorFame.ID) {
+          favorFame.favourites = !favorFame.favourites;
+        }
+        return favorFame;
+      })
+      .filter(item => item.favourites);
+    localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
   }
 }
