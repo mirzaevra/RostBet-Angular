@@ -7,8 +7,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class GameCardComponent implements OnInit {
     @Input() game: any;
-    @Output() onToggleFavourites: EventEmitter<any> = new EventEmitter<any>();
-    @Output() onTogglePriority: EventEmitter<any> = new EventEmitter<any>();
+    @Output() switchFavourites: EventEmitter<any> = new EventEmitter<any>();
+    @Output() switchPriority: EventEmitter<any> = new EventEmitter<any>();
 
     constructor() {
     }
@@ -17,11 +17,11 @@ export class GameCardComponent implements OnInit {
     }
 
     toggleFavourites(game): void {
-        this.onToggleFavourites.emit(game);
+        this.switchFavourites.emit(game);
     }
 
     togglePriority(game): void {
-        this.onTogglePriority.emit(game);
+        this.switchPriority.emit(game);
     }
 
 }

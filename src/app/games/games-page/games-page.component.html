@@ -35,7 +35,7 @@
         class="games__col">
         <app-game-card
           [game]="game"
-          (onToggleFavourites)="toggleFavourites($event)"
+          (switchFavourites)="toggleFavourites($event)"
         ></app-game-card>
       </div>
     </div>
@@ -53,8 +53,8 @@
         class="games__col">
         <app-game-card
           [game]="game"
-          (onToggleFavourites)="toggleFavourites($event)"
-          (onTogglePriority)="togglePriority($event)"
+          (switchFavourites)="toggleFavourites($event)"
+          (switchPriority)="togglePriority($event)"
         ></app-game-card>
       </div>
     </div>
