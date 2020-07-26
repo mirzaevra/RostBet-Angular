@@ -6,14 +6,15 @@ import {Games} from '../../../shared/interface';
 })
 
 export class SearchPipe implements PipeTransform {
-  transform(games: Games[], search = ''): Games[] {
+  transform(games: Games[], search = '', perPage, page): Games[] {
     if (!search.trim()) {
       return games;
     }
 
-    return games.filter(game => {
-      return game.Name.en.toLowerCase().includes(search.toLowerCase());
-    });
+    return games
+      .filter(game => {
+      return game.Name.en.toLowerCase().includes(search.toLowerCase()) && !game.priority;
+    }).slice(0, perPage * page);
   }
 
 }

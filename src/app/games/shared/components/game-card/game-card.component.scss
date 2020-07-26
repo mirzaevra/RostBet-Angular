@@ -49,7 +49,8 @@
     text-decoration: none;
   }
 
-  &__favourites {
+  &__favourites,
+  &__priority {
     position: absolute;
     top: 50%;
     width: 30px;
@@ -68,5 +69,8 @@
     &:hover {
       color: indianred;
     }
+  }
+  &__priority {
+    right: 45px;
   }
 }

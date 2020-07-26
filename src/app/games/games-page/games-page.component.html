@@ -49,16 +49,16 @@
     <div
       class="games__row">
       <div
-        *ngFor="let game of games | searchGames: searchString;"
+        *ngFor="let game of games | searchGames: searchString: perPage: page;"
         class="games__col">
         <app-game-card
           [game]="game"
           (onToggleFavourites)="toggleFavourites($event)"
+          (onTogglePriority)="togglePriority($event)"
         ></app-game-card>
       </div>
     </div>
     <div
-      *ngIf="!searchString.trim().length;"
       class="button-wrap">
     <span class="button"
           (click)="loadMoreGames()">Show more</span>

@@ -14,11 +14,12 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   public allGames: Games[] = [];
   private allCategories = [];
   private allMerchants = {};
-  private perPage = 12;
-  private page = 1;
+  public perPage = 12;
+  public page = 1;
   public favouritesGames = [];
   private savedGamesList: Games[] = [];
   public searchString = '';
+  public topGames: Games[] = [];
 
 
   constructor(
@@ -27,10 +28,11 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.restoreFavourites();
+    this.restoreFavouritesFromStorage();
     this.gamesSubscription = this.gamesService.getAll().subscribe(response => {
       this.allGames = response.games.map(game => {
         game.favourites = false;
+        game.priority = 0;
         return game;
       });
       this.allCategories = response.categories;
@@ -47,6 +49,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   selectSorted(type): void {
+    this.page = 1;
     switch (type) {
       case 'default':
         this.sortByDefault();
@@ -116,15 +119,43 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   setQuntityOnPage(perPage): void {
+    this.page = 1;
     this.perPage = perPage;
   }
 
-  restoreFavourites(): void {
+  restoreFavouritesFromStorage(): void {
     this.favouritesGames = this.getFavouritesFromStorage();
   }
 
   getFavouritesFromStorage(): Games[] {
     return localStorage.getItem('favourites') ? JSON.parse(localStorage.getItem('favourites')) : [];
+  }
+
+  isPriority(game): number {
+    let result = -1;
+    this.topGames.forEach((item, index) => {
+      if (game.ID === item.ID) {
+        if (item.priority) {
+          result = index;
+        }
+        return false;
+      }
+    });
+
+    return result;
+  }
+
+  togglePriority(game): void {
+    const index = this.isPriority(game);
+    if (index < 0) {
+      this.topGames.push(game);
+    } else {
+      this.topGames.splice(index, 1);
+    }
+  }
+
+  setFavouritesInStorage(): void {
+    localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
   }
 
   toggleFavourites(game): void {
@@ -136,6 +167,6 @@ export class GamesPageComponent implements OnInit, OnDestroy {
         return favorFame;
       })
       .filter(item => item.favourites);
-    localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
+    this.setFavouritesInStorage();
   }
 }
