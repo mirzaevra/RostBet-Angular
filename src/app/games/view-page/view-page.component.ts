@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GamesService} from '../shared/services/games.service';
-import {Observable, Subscription} from 'rxjs';
+import {Observable, Subscription, throwError} from 'rxjs';
 import {Games} from '../../shared/interface';
 import {ActivatedRoute, Params} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
@@ -15,7 +15,8 @@ export class ViewPageComponent implements OnInit, OnDestroy {
   public allGames: Games[] = [];
   private viewGame: Games;
   private favouritesGames = [];
-  private viewId: number;
+  private viewMId: number;
+  private viewLId: number;
 
   constructor(
     private gamesService: GamesService,
@@ -25,7 +26,9 @@ export class ViewPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.viewId = +params.id;
+      console.log(params);
+      this.viewMId = +params.mid;
+      this.viewLId = +params.lid;
     });
     this.restoreFavourites();
     this.gamesSubscription = this.gamesService.getAll().subscribe(response => {
@@ -34,8 +37,8 @@ export class ViewPageComponent implements OnInit, OnDestroy {
         return game;
       });
       this.dataMerge();
-      this.viewGame = this.allGames.find(game => +game.ID === this.viewId);
-      console.log(this.viewGame);
+      this.viewGame = this.allGames
+        .find(game => +game.MerchantID === this.viewMId && +game.LaunchCode === this.viewLId);
     });
   }
 

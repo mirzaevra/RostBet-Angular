@@ -28,7 +28,7 @@ import {FormsModule} from '@angular/forms';
         {
           path: '', children: [
             {path: '', component: GamesPageComponent},
-            {path: 'view/:id', component: ViewPageComponent}
+            {path: 'view/:mid/:lid', component: ViewPageComponent}
           ]
         }
       ])

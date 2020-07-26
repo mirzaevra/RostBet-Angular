@@ -8,6 +8,8 @@ export interface Games {
   some: object;
   favourites?: boolean;
   Sort?: number;
+  LaunchCode?: string;
+  MerchantID?: string;
 }
 
 export interface Categories {
