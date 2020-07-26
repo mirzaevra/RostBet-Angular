@@ -1,3 +1,6 @@
-<section class="view">
+<section
+  *ngIf="allGames.length"
+  class="view">
   <h1>{{view.Name.en}}</h1>
+  <img [src]="view.ImageFullPath" alt="">
 </section>
