@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GamesService} from '../shared/services/games.service';
 import {Subscription} from 'rxjs';
 import {Games} from '../../shared/interface';
+import {HeaderStateService} from '../../shared/components/header/header-state.service';
 
 @Component({
   selector: 'app-games-page',
@@ -24,6 +25,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private gamesService: GamesService,
+    private headerStateService: HeaderStateService,
   ) {
   }
 
@@ -39,6 +41,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       this.allMerchants = response.merchants;
       this.dataMerge();
       this.savedGamesList = [...this.allGames];
+      this.setHeaderCounters();
     });
   }
 
@@ -46,6 +49,11 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     if (this.gamesSubscription) {
       this.gamesSubscription.unsubscribe();
     }
+  }
+
+  setHeaderCounters(): void {
+    this.headerStateService.setAllGemesCount(this.allGames.length);
+    this.headerStateService.setFilteredGemesCount(this.games.length);
   }
 
   selectSorted(type): void {
@@ -121,7 +129,14 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   setQuntityOnPage(perPage): void {
     this.page = 1;
     this.perPage = perPage;
+
   }
+
+  onQuntityOnPage(perPage): void {
+    this.setQuntityOnPage(perPage);
+    this.setHeaderCounters();
+  }
+
 
   restoreFavouritesFromStorage(): void {
     this.favouritesGames = this.getFavouritesFromStorage();

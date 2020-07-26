@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HeaderStateService} from './header-state.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  constructor(
+    private headerStateService: HeaderStateService
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
+  getAllGemesCount(): number {
+    return this.headerStateService.getAllGemesCount();
+  }
+
+  getFilteredGemesCount(): number {
+    return this.headerStateService.getFilteredGemesCount();
+  }
 }
