@@ -5,10 +5,6 @@
       alt=""
       class="game-card__img">
   </div>
-  <p
-    *ngIf="game.priority"
-    class="game-card__priority"
-  >Game priority</p>
   <div class="game-card__info">
     <p class="game-card__title">{{game.Name.en}}</p>
     <a
@@ -21,6 +17,7 @@
       }"
       class="game-card__favourites"
       (click)="toggleFavourites(game)"
+      title="Toggle Favourites"
     >❤</span>
     <span
       [ngClass]="{
@@ -28,6 +25,7 @@
           }"
       class="game-card__priority"
       (click)="togglePriority(game)"
-    >!</span>
+      title="Toggle VIP"
+    >VIP</span>
   </div>
 </div>

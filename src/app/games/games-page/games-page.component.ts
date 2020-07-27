@@ -170,23 +170,55 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     this.setHeaderCounters();
   }
 
-  isPriority(game): number {
-    let result = -1;
-    this.topGames.forEach((item, index) => {
+  isPriority(game): any {
+    const result: any = {
+      index: -1, priority: 0
+    };
+
+    this.allGames.forEach((item, index) => {
       if (game.ID === item.ID) {
-        if (item.priority) {
-          result = index;
-        }
+        result.index = index;
+        result.priority = item.priority;
         return false;
       }
     });
-
     return result;
   }
 
   togglePriorityHandler(game): void {
-    const index = this.isPriority(game);
-    index < 0 ? this.topGames.push(game) : this.topGames.splice(index, 1);
+    const isPriority = this.isPriority(game);
+    if (isPriority.index >= 0) {
+      if (isPriority.priority) {
+        this.allGames[isPriority.index].priority = 0;
+        this.topGames.splice(isPriority.index, 1);
+      } else {
+        this.allGames[isPriority.index].priority = 100;
+        this.topGames.unshift(game);
+        for (let i = 5; i < this.topGames.length; i++) {
+          const isPriorityTop = this.isPriority(this.topGames[i]);
+          if (isPriorityTop.index >= 0) {
+            this.allGames[isPriorityTop.index].priority = 0;
+          }
+        }
+        this.topGames = this.topGames.slice(0, 5);
+      }
+    }
+    this.togglePriority();
+  }
+
+  togglePriority(): void {
+    this.allGames = this.savedGamesList;
+    this.savedGamesList = [...this.allGames];
+    if (this.topGames.length) {
+      this.allGames.forEach((game, index) => {
+        this.topGames.forEach(topGame => {
+          if (topGame.ID === game.ID) {
+            this.allGames.splice(index, 1);
+            this.allGames.unshift(game);
+          }
+        });
+      });
+    }
   }
 
   toggleFavouritesHandler(game: Games): void {

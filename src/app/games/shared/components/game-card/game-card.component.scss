@@ -71,11 +71,12 @@
     text-decoration: none;
 
     &.favourites,
+    &.priority,
     &:hover {
       color: indianred;
     }
   }
   &__priority {
-    right: 45px;
+    right: 65px;
   }
 }
