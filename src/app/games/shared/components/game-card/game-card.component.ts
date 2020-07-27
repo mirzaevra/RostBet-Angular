@@ -9,7 +9,6 @@ import {Games} from '../../../../shared/interface';
 export class GameCardComponent implements OnInit {
     @Input() game: Games;
     @Output() switchFavourites: EventEmitter<any> = new EventEmitter<any>();
-    @Output() switchPriority: EventEmitter<any> = new EventEmitter<any>();
 
     constructor() {
     }
@@ -20,9 +19,4 @@ export class GameCardComponent implements OnInit {
     toggleFavourites(game): void {
         this.switchFavourites.emit(game);
     }
-
-    togglePriority(game): void {
-        this.switchPriority.emit(game);
-    }
-
 }

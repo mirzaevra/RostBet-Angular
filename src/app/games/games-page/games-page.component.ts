@@ -21,7 +21,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   public favouritesGames = [];
   private savedGamesList: Games[] = [];
   public searchString = '';
-  public topGames: Games[] = [];
+  private topGamesIds: string[] = ['1566226', '1619143', '1141500', '1516543', '1588528'];
 
 
   constructor(
@@ -34,16 +34,30 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.restoreFavouritesFromStorage();
     this.gamesSubscription = this.gamesService.getAll().subscribe(response => {
-      this.allGames = response.games.map(game => {
-        game.favourites = false;
-        game.priority = 0;
-        return game;
-      });
+      this.allGames = response.games
+        .map(game => {
+          game.favourites = false;
+          game.priority = false;
+          return game;
+        });
+      this.setTopGames();
       this.allCategories = response.categories;
       this.allMerchants = Object.values(response.merchants);
       this.dataMerge();
       this.savedGamesList = [...this.allGames];
       this.setHeaderCounters();
+    });
+  }
+
+  setTopGames(): void {
+    this.allGames.map((game, index) => {
+      this.topGamesIds.forEach(topGameId => {
+        if (topGameId === game.ID) {
+          this.allGames.splice(index, 1);
+          this.allGames.unshift(game);
+          game.priority = true;
+        }
+      });
     });
   }
 
@@ -91,6 +105,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
+    this.setTopGames();
   }
 
   sortByNameReverse(array): any {
@@ -103,6 +118,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
+    this.setTopGames();
   }
 
   sortByDefault(): any {
@@ -150,25 +166,6 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   onQuntityOnPage(perPage): void {
     this.setQuntityOnPage(perPage);
     this.setHeaderCounters();
-  }
-
-  isPriority(game): number {
-    let result = -1;
-    this.topGames.forEach((item, index) => {
-      if (game.ID === item.ID) {
-        if (item.priority) {
-          result = index;
-        }
-        return false;
-      }
-    });
-
-    return result;
-  }
-
-  togglePriorityHandler(game): void {
-    const index = this.isPriority(game);
-    index < 0 ? this.topGames.push(game) : this.topGames.splice(index, 1);
   }
 
   toggleFavouritesHandler(game: Games): void {

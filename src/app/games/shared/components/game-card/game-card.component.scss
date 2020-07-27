@@ -26,6 +26,17 @@
     object-fit: cover;
   }
 
+  &__priority {
+    position: absolute;
+    z-index: 2;
+    top: 5px;
+    left: 5px;
+    font-size: 20px;
+    color: #5daf36;
+    padding: 2px 5px;
+    background: rgba(#000, .7);
+  }
+
   &__info {
     opacity: 0;
     position: relative;
@@ -48,8 +59,7 @@
     text-decoration: none;
   }
 
-  &__favourites,
-  &__priority {
+  &__favourites {
     position: absolute;
     top: 50%;
     width: 30px;
@@ -64,12 +74,10 @@
     cursor: pointer;
     transition: color .2s linear;
     text-decoration: none;
+
     &.favourites,
     &:hover {
       color: indianred;
     }
-  }
-  &__priority {
-    right: 45px;
   }
 }
