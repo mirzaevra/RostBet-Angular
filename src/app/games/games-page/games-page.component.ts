@@ -21,7 +21,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   public favouritesGames = [];
   private savedGamesList: Games[] = [];
   public searchString = '';
-  private topGamesIds: string[] = ['1566226', '1619143', '1141500', '1516543', '1588528'];
+  // private topGamesIds: string[] = ['1566226', '1619143', '1141500', '1516543', '1588528'];
 
 
   constructor(
@@ -40,7 +40,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
           game.priority = false;
           return game;
         });
-      this.setTopGames();
+      // this.setTopGames();
       this.allCategories = response.categories;
       this.allMerchants = Object.values(response.merchants);
       this.dataMerge();
@@ -49,17 +49,17 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  setTopGames(): void {
-    this.allGames.map((game, index) => {
-      this.topGamesIds.forEach(topGameId => {
-        if (topGameId === game.ID) {
-          this.allGames.splice(index, 1);
-          this.allGames.unshift(game);
-          game.priority = true;
-        }
-      });
-    });
-  }
+  // setTopGames(): void {
+  //   this.allGames.map((game, index) => {
+  //     this.topGamesIds.forEach(topGameId => {
+  //       if (topGameId === game.ID) {
+  //         this.allGames.splice(index, 1);
+  //         this.allGames.unshift(game);
+  //         game.priority = true;
+  //       }
+  //     });
+  //   });
+  // }
 
   ngOnDestroy(): void {
     if (this.gamesSubscription) {
@@ -105,7 +105,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
-    this.setTopGames();
+    // this.setTopGames();
   }
 
   sortByNameReverse(array): any {
@@ -118,7 +118,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
-    this.setTopGames();
+    // this.setTopGames();
   }
 
   sortByDefault(): any {

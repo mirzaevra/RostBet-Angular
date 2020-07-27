@@ -8,7 +8,9 @@
           <img src="assets/images/logo.svg" alt="">
         </span>
       </div>
-      <div class="header__col">
+      <div
+        *ngIf="getFilteredGemesCount() && getFilteredGemesCount()"
+        class="header__col">
         Games: {{getFilteredGemesCount()}}/{{getAllGemesCount()}}
       </div>
       <div class="header__col"></div>
