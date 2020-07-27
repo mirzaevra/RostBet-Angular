@@ -63,16 +63,16 @@ export class GamesPageComponent implements OnInit, OnDestroy {
         this.sortByDefault();
         break;
       case 'name':
-        this.sortByName();
+        this.sortByName(this.allGames);
         break;
       case 'reverse':
-        this.sortByNameReverse();
+        this.sortByNameReverse(this.allGames);
         break;
     }
   }
 
-  sortByName(): any {
-    this.allGames.sort((a: Games, b: Games) => {
+  sortByName(array): any {
+    array.sort((a: Games, b: Games) => {
       if (a.Name.en > b.Name.en) {
         return 1;
       }
@@ -83,8 +83,8 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  sortByNameReverse(): any {
-    this.allGames.sort((a: Games, b: Games) => {
+  sortByNameReverse(array): any {
+    array.sort((a: Games, b: Games) => {
       if (a.Name.en > b.Name.en) {
         return -1;
       }
@@ -187,6 +187,11 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   sortByMerchants(merchantIds): void {
+    if (!merchantIds.length) {
+      this.allGames = this.savedGamesList;
+      this.setHeaderCounters();
+      return;
+    }
     this.allGames = this.savedGamesList;
     this.allGames = this.allGames.filter(game => {
       return merchantIds.filter(merchantId => {
@@ -195,5 +200,6 @@ export class GamesPageComponent implements OnInit, OnDestroy {
         }
       }).length;
     });
+    this.setHeaderCounters();
   }
 }

@@ -1,6 +1,6 @@
 <ul class="merchant-list list">
   <li
-    *ngFor="let merchant of merchantList"
+    *ngFor="let merchant of merchantList | sort: 'Name'"
     class="merchant-list__item list__item"
     (click)="toggleMerchant(merchant)"
     [ngClass]="{

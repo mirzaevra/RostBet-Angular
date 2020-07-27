@@ -11,6 +11,7 @@ import {SortListComponent} from './shared/components/sort-list/sort-list.compone
 import {SearchPipe} from './shared/pipes/search.pipe';
 import {FormsModule} from '@angular/forms';
 import {MerchantListComponent} from './shared/components/merchant-list/merchant-list.component';
+import {SortPipe} from './shared/pipes/sort.pipe';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {MerchantListComponent} from './shared/components/merchant-list/merchant-
       ControlsBarComponent,
       SortListComponent,
       SearchPipe,
+      SortPipe,
       MerchantListComponent,
     ],
     imports: [

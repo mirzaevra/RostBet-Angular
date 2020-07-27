@@ -66,6 +66,7 @@
       </div>
     </div>
     <div
+      *ngIf="games.length >= perPage"
       class="button-wrap">
     <span class="button"
           (click)="loadMoreGames()">Show more</span>
