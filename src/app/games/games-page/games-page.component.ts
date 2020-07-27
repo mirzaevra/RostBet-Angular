@@ -183,6 +183,17 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   }
 
   toggleMerchantHandler(merchantIds): void {
-    console.log(merchantIds);
+    this.sortByMerchants(merchantIds);
+  }
+
+  sortByMerchants(merchantIds): void {
+    this.allGames = this.savedGamesList;
+    this.allGames = this.allGames.filter(game => {
+      return merchantIds.filter(merchantId => {
+        if (game.MerchantID === merchantId) {
+          return game;
+        }
+      }).length;
+    });
   }
 }
