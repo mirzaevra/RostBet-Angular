@@ -3,6 +3,7 @@ import {GamesService} from '../shared/services/games.service';
 import {Subscription} from 'rxjs';
 import {Games, Merchants} from '../../shared/interface';
 import {HeaderStateService} from '../../shared/components/header/header-state.service';
+import {MerchantStateService} from '../shared/components/merchant-list/merchant-state.service';
 
 @Component({
   selector: 'app-games-page',
@@ -26,6 +27,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   constructor(
     private gamesService: GamesService,
     private headerStateService: HeaderStateService,
+    private merchantStateService: MerchantStateService
   ) {
   }
 
@@ -98,6 +100,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   sortByDefault(): any {
     this.allGames = this.savedGamesList;
     this.savedGamesList = [...this.allGames];
+    this.merchantStateService.resetMerchantIds();
   }
 
   dataMerge(): void {

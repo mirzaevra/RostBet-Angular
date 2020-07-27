@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Merchants} from '../../../../shared/interface';
+import {MerchantStateService} from './merchant-state.service';
 
 @Component({
   selector: 'app-merchant-list',
@@ -7,11 +8,12 @@ import {Merchants} from '../../../../shared/interface';
   styleUrls: ['./merchant-list.component.scss']
 })
 export class MerchantListComponent implements OnInit {
-  public merchantIds: any[] = [];
   @Input() merchantList: Merchants[];
   @Output() switchMerchants: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {
+  constructor(
+    private merhcantStateService: MerchantStateService
+  ) {
   }
 
   ngOnInit(): void {
@@ -19,7 +21,7 @@ export class MerchantListComponent implements OnInit {
 
   isSelected(merchant): number {
     let isSelected = -1;
-    this.merchantIds.forEach((item, index) => {
+    this.merhcantStateService.merchantIds.forEach((item, index) => {
       if (merchant.ID === item) {
         isSelected = index;
       }
@@ -30,7 +32,7 @@ export class MerchantListComponent implements OnInit {
 
   toggleMerchant(merchant: Merchants): void {
     const index = this.isSelected(merchant);
-    index < 0 ? this.merchantIds.push(merchant.ID) : this.merchantIds.splice(index, 1);
-    this.switchMerchants.emit(this.merchantIds);
+    index < 0 ? this.merhcantStateService.merchantIds.push(merchant.ID) : this.merhcantStateService.merchantIds.splice(index, 1);
+    this.switchMerchants.emit(this.merhcantStateService.merchantIds);
   }
 }
