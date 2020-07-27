@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Merchants} from '../../../../shared/interface';
 
 @Component({
@@ -9,6 +9,7 @@ import {Merchants} from '../../../../shared/interface';
 export class MerchantListComponent implements OnInit {
   public merchantIds: any[] = [];
   @Input() merchantList: Merchants[];
+  @Output() switchMerchants: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
@@ -29,13 +30,7 @@ export class MerchantListComponent implements OnInit {
 
   toggleMerchant(merchant: Merchants): void {
     const index = this.isSelected(merchant);
-    console.log(index);
-    if (index < 0) {
-      this.merchantIds.push(merchant.ID);
-    } else {
-      this.merchantIds.splice(index, 1);
-    }
-    console.log(this.merchantIds);
+    index < 0 ? this.merchantIds.push(merchant.ID) : this.merchantIds.splice(index, 1);
+    this.switchMerchants.emit(this.merchantIds);
   }
-
 }

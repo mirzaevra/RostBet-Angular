@@ -161,20 +161,16 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  togglePriority(game): void {
+  togglePriorityHandler(game): void {
     const index = this.isPriority(game);
-    if (index < 0) {
-      this.topGames.push(game);
-    } else {
-      this.topGames.splice(index, 1);
-    }
+    index < 0 ? this.topGames.push(game) : this.topGames.splice(index, 1);
   }
 
   setFavouritesInStorage(): void {
     localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
   }
 
-  toggleFavourites(game): void {
+  toggleFavouritesHandler(game): void {
     this.favouritesGames = this.allGames
       .map(favorFame => {
         if (game.ID === favorFame.ID) {
@@ -184,5 +180,9 @@ export class GamesPageComponent implements OnInit, OnDestroy {
       })
       .filter(item => item.favourites);
     this.setFavouritesInStorage();
+  }
+
+  toggleMerchantHandler(merchantIds): void {
+    console.log(merchantIds);
   }
 }

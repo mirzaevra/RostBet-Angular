@@ -21,6 +21,7 @@
     >Sort By Merchants:</h2>
     <app-merchant-list
       [merchantList]='allMerchants'
+      (switchMerchants)="toggleMerchantHandler($event)"
     ></app-merchant-list>
   </div>
   <div class="games-container">
@@ -43,7 +44,7 @@
         class="games__col">
         <app-game-card
           [game]="game"
-          (switchFavourites)="toggleFavourites($event)"
+          (switchFavourites)="toggleFavouritesHandler($event)"
         ></app-game-card>
       </div>
     </div>
@@ -59,8 +60,8 @@
         class="games__col">
         <app-game-card
           [game]="game"
-          (switchFavourites)="toggleFavourites($event)"
-          (switchPriority)="togglePriority($event)"
+          (switchFavourites)="toggleFavouritesHandler($event)"
+          (switchPriority)="togglePriorityHandler($event)"
         ></app-game-card>
       </div>
     </div>
