@@ -9,6 +9,7 @@
     <p class="game-card__title">{{game.Name.en}}</p>
     <a
       [routerLink]="['view', game.MerchantID, game.LaunchCode]"
+      target="_blank"
       class="game-card__btn">Show</a>
     <span
       [ngClass]="{

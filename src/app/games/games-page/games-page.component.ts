@@ -120,6 +120,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
 
   loadMoreGames(): void {
     this.page++;
+    this.setHeaderCounters();
   }
 
   public changeShowingQuantity(quantity = 100): void {

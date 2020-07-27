@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GamesService} from '../shared/services/games.service';
-import {Observable, Subscription, throwError} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Games} from '../../shared/interface';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-view-page',
@@ -15,8 +14,8 @@ export class ViewPageComponent implements OnInit, OnDestroy {
   public allGames: Games[] = [];
   private viewGame: Games;
   private favouritesGames = [];
-  private viewMId: number;
-  private viewLId: number;
+  private viewMId: string | number;
+  private viewLId: string | number;
 
   constructor(
     private gamesService: GamesService,
@@ -27,8 +26,8 @@ export class ViewPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.viewMId = +params.mid;
-      this.viewLId = +params.lid;
+      this.viewMId = params.mid;
+      this.viewLId = params.lid;
     });
     this.restoreFavourites();
     this.gamesSubscription = this.gamesService.getAll().subscribe(response => {
@@ -38,7 +37,7 @@ export class ViewPageComponent implements OnInit, OnDestroy {
       });
       this.dataMerge();
       this.viewGame = this.allGames
-        .find(game => +game.MerchantID === this.viewMId && +game.LaunchCode === this.viewLId);
+        .find(game => game.MerchantID === this.viewMId && game.LaunchCode === this.viewLId);
       if (!this.viewGame) {
         this.route.navigate(['/error']);
       }

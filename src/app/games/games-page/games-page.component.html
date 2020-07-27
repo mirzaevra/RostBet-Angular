@@ -27,7 +27,7 @@
   <div
     *ngIf="favouritesGames.length;"
     class="games-container">
-    <h2>Favourites</h2>
+    <h2>Favourites Games:</h2>
     <div
       class="games__row">
       <div
@@ -43,9 +43,7 @@
   <div
     *ngIf="games.length;"
     class="games-container">
-    <h2>All
-      <span *ngIf="!searchString.length">{{games.length}} of {{allGames.length}}</span>
-    </h2>
+    <h2>All Games:</h2>
     <div
       class="games__row">
       <div

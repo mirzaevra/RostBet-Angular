@@ -9,8 +9,8 @@ export interface Games {
   favourites?: boolean;
   priority?: number;
   Sort?: number;
-  LaunchCode?: string;
-  MerchantID?: string;
+  LaunchCode?: string | number;
+  MerchantID?: string | number;
 }
 
 export interface Categories {
