@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Games} from '../../../../shared/interface';
 
 @Component({
     selector: 'app-game-card',
@@ -6,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
     styleUrls: ['./game-card.component.scss']
 })
 export class GameCardComponent implements OnInit {
-    @Input() game: any;
+    @Input() game: Games;
     @Output() switchFavourites: EventEmitter<any> = new EventEmitter<any>();
     @Output() switchPriority: EventEmitter<any> = new EventEmitter<any>();
 

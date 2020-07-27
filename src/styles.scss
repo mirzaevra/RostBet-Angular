@@ -71,6 +71,31 @@ body {
   }
 }
 
+.list {
+  display: flex;
+
+  &__item {
+    margin-right: 20px;
+    padding: 7px 10px;
+    font-size: 14px;
+    line-height: .7;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    transition: border-color .2s linear, background .2s linear;
+
+    &.active,
+    &:hover {
+      border-color: #196deb;
+      background: #196deb;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 @media screen and (max-width: 1199px) {
   .container {
     max-width: 1140px;

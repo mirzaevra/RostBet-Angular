@@ -10,6 +10,7 @@ import {ControlsBarComponent} from './shared/components/controls-bar/controls-ba
 import {SortListComponent} from './shared/components/sort-list/sort-list.component';
 import {SearchPipe} from './shared/pipes/search.pipe';
 import {FormsModule} from '@angular/forms';
+import {MerchantListComponent} from './shared/components/merchant-list/merchant-list.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import {FormsModule} from '@angular/forms';
       ControlsBarComponent,
       SortListComponent,
       SearchPipe,
+      MerchantListComponent,
     ],
     imports: [
       CommonModule,

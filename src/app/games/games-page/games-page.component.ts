@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GamesService} from '../shared/services/games.service';
 import {Subscription} from 'rxjs';
-import {Games} from '../../shared/interface';
+import {Games, Merchants} from '../../shared/interface';
 import {HeaderStateService} from '../../shared/components/header/header-state.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   private gamesSubscription: Subscription;
   public allGames: Games[] = [];
   private allCategories = [];
-  private allMerchants = {};
+  public allMerchants: Merchants[] = [];
   public perPage = 12;
   public page = 1;
   public favouritesGames = [];
@@ -38,7 +38,7 @@ export class GamesPageComponent implements OnInit, OnDestroy {
         return game;
       });
       this.allCategories = response.categories;
-      this.allMerchants = response.merchants;
+      this.allMerchants = Object.values(response.merchants);
       this.dataMerge();
       this.savedGamesList = [...this.allGames];
       this.setHeaderCounters();

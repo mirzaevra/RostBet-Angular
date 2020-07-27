@@ -1,24 +1,3 @@
 .sort-list {
-  display: flex;
 
-  &__item {
-    margin-right: 25px;
-    padding: 7px 15px;
-    font-size: 14px;
-    line-height: .7;
-    border-radius: 50px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    transition: border-color .2s linear, background .2s linear;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &.active,
-    &:hover {
-      border-color: #196deb;
-      background: #196deb;
-    }
-  }
 }

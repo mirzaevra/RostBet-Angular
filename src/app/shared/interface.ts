@@ -18,7 +18,8 @@ export interface Categories {
 }
 
 export interface Merchants {
-  id: number;
+  ID: string | number;
+  Name: string;
 }
 
 export interface ResponseAPI {
