@@ -2,6 +2,10 @@
   <li
     *ngFor="let merchant of merchantList"
     class="merchant-list__item list__item"
+    (click)="toggleMerchant(merchant)"
+    [ngClass]="{
+      'active': isSelected(merchant) >= 0
+      }"
   >
     {{merchant.Name}}
   </li>
