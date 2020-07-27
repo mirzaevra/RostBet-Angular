@@ -30,16 +30,6 @@ export class ControlsBarComponent implements OnInit {
       perPage: 48,
       active: false,
     },
-    {
-      text: 'Set:',
-      perPage: 50,
-      active: false,
-    },
-    {
-      text: 'Set:',
-      perPage: 100,
-      active: false,
-    },
   ];
 
   constructor() {
