@@ -20,16 +20,16 @@
     object-fit: cover;
   }
 
-  &__priority {
-    position: absolute;
-    z-index: 2;
-    top: 5px;
-    left: 5px;
-    font-size: 20px;
-    color: #5daf36;
-    padding: 2px 5px;
-    background: rgba(#000, .7);
-  }
+  //&__priority {
+  //  position: absolute;
+  //  z-index: 2;
+  //  top: 5px;
+  //  left: 5px;
+  //  font-size: 20px;
+  //  color: #5daf36;
+  //  padding: 2px 5px;
+  //  background: rgba(#000, .7);
+  //}
 
   &__info {
     opacity: 1;
@@ -53,7 +53,8 @@
     text-decoration: none;
   }
 
-  &__favourites {
+  &__favourites,
+  &__priority {
     position: absolute;
     top: 50%;
     width: 30px;
@@ -73,5 +74,8 @@
     &:hover {
       color: indianred;
     }
+  }
+  &__priority {
+    right: 45px;
   }
 }

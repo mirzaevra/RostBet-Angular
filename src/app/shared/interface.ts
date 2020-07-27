@@ -7,7 +7,7 @@ export interface Games {
   };
   some: object;
   favourites?: boolean;
-  priority?: boolean;
+  priority?: boolean | number;
   Sort?: number;
   LaunchCode?: string | number;
   MerchantID?: string | number;
