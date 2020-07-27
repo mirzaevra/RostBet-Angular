@@ -53,6 +53,14 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  get games(): Games[] {
+    if (this.searchString.trim().length > 0) {
+      return this.allGames;
+    } else {
+      return this.allGames.slice(0, this.perPage * this.page);
+    }
+  }
+
   setHeaderCounters(): void {
     this.headerStateService.setAllGemesCount(this.allGames.length);
     this.headerStateService.setFilteredGemesCount(this.games.length);
@@ -113,12 +121,16 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  get games(): Games[] {
-    if (this.searchString.trim().length > 0) {
-      return this.allGames;
-    } else {
-      return this.allGames.slice(0, this.perPage * this.page);
-    }
+  restoreFavouritesFromStorage(): void {
+    this.favouritesGames = this.getFavouritesFromStorage();
+  }
+
+  getFavouritesFromStorage(): Games[] {
+    return localStorage.getItem('favourites') ? JSON.parse(localStorage.getItem('favourites')) : [];
+  }
+
+  setFavouritesInStorage(): void {
+    localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
   }
 
   loadMoreGames(): void {
@@ -133,21 +145,11 @@ export class GamesPageComponent implements OnInit, OnDestroy {
   setQuntityOnPage(perPage): void {
     this.page = 1;
     this.perPage = perPage;
-
   }
 
   onQuntityOnPage(perPage): void {
     this.setQuntityOnPage(perPage);
     this.setHeaderCounters();
-  }
-
-
-  restoreFavouritesFromStorage(): void {
-    this.favouritesGames = this.getFavouritesFromStorage();
-  }
-
-  getFavouritesFromStorage(): Games[] {
-    return localStorage.getItem('favourites') ? JSON.parse(localStorage.getItem('favourites')) : [];
   }
 
   isPriority(game): number {
@@ -169,23 +171,34 @@ export class GamesPageComponent implements OnInit, OnDestroy {
     index < 0 ? this.topGames.push(game) : this.topGames.splice(index, 1);
   }
 
-  setFavouritesInStorage(): void {
-    localStorage.setItem('favourites', JSON.stringify(this.favouritesGames));
+  toggleFavouritesHandler(game: Games): void {
+    this.toggleFavourites(game);
   }
 
-  toggleFavouritesHandler(game): void {
-    this.favouritesGames = this.allGames
-      .map(favorFame => {
-        if (game.ID === favorFame.ID) {
-          favorFame.favourites = !favorFame.favourites;
-        }
-        return favorFame;
-      })
-      .filter(item => item.favourites);
+  toggleFavourites(game: Games): void {
+    const index = this.isFavourite(game);
+    if (index < 0) {
+      game.favourites = true;
+      this.favouritesGames.unshift(game);
+    } else {
+      game.favourites = false;
+      this.favouritesGames.splice(index, 1);
+    }
     this.setFavouritesInStorage();
   }
 
-  toggleMerchantHandler(merchantIds): void {
+  isFavourite(game: Games): number {
+    let findIndex = -1;
+    this.favouritesGames.forEach((favorGame, index) => {
+      if (favorGame.ID === game.ID) {
+        findIndex = index;
+        return false;
+      }
+    });
+    return findIndex;
+  }
+
+  toggleMerchantHandler(merchantIds: []): void {
     this.sortByMerchants(merchantIds);
   }
 
